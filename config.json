@@ -1,12 +1,42 @@
 {
-  "log": { "level": "info" },
-  "inbounds": [{
-    "type": "vless",
-    "tag": "vless-in",
-    "listen": "::",
-    "listen_port": 8080,
-    "users": [{ "uuid": "980088d8-df2d-418c-b4f8-4b3fab246f9c" }],
-    "transport": { "type": "ws", "path": "/chat" }
-  }],
-  "outbounds": [{ "type": "direct", "tag": "direct" }]
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": 9000,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "af7f187f-95a6-4fe9-8bd5-61af81faa265",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "www.amd.com:443",
+          "xver": 0,
+          "serverNames": [
+            "www.amd.com"
+          ],
+          "privateKey": "YOUR_PRIVATE_KEY",
+          "shortIds": [
+            "2be56ce02c4fc52c"
+          ]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom"
+    }
+  ]
 }
